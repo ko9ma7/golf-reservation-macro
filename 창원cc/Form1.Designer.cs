@@ -35,6 +35,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.progress1 = new 창원cc.UC.progress();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,11 +93,28 @@
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(13, 30);
+            this.panel3.Location = new System.Drawing.Point(13, 17);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(448, 147);
+            this.panel3.Size = new System.Drawing.Size(448, 176);
             this.panel3.TabIndex = 5;
             this.panel3.Visible = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.progress1);
+            this.panel4.Location = new System.Drawing.Point(13, 15);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(448, 176);
+            this.panel4.TabIndex = 6;
+            this.panel4.Visible = false;
+            // 
+            // progress1
+            // 
+            this.progress1.BackColor = System.Drawing.Color.White;
+            this.progress1.Location = new System.Drawing.Point(0, 2);
+            this.progress1.Name = "progress1";
+            this.progress1.Size = new System.Drawing.Size(448, 176);
+            this.progress1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -102,7 +122,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(443, 209);
+            this.ClientSize = new System.Drawing.Size(443, 210);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
@@ -112,7 +133,8 @@
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "창원cc 예약 ";
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,6 +148,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private UC.progress progress1;
     }
 }
 

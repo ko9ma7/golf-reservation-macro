@@ -15,3 +15,4 @@ C:\Users\Administrator\source\repos\창원cc\창원cc\bin\Debug\Bunifu_UI_v1.52.
 C:\Users\Administrator\source\repos\창원cc\창원cc\obj\Debug\창원cc.UC.login.resources
 C:\Users\Administrator\source\repos\창원cc\창원cc\obj\Debug\창원cc.UC.Info.resources
 C:\Users\Administrator\source\repos\창원cc\창원cc\obj\Debug\창원cc.UC.time.resources
+C:\Users\Administrator\source\repos\창원cc\창원cc\obj\Debug\창원cc.UC.progress.resources

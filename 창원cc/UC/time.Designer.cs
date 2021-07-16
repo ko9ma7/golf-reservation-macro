@@ -31,13 +31,15 @@
             this.bunifuDatepicker1 = new ns1.BunifuDatepicker();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.bunifuDropdown1 = new ns1.BunifuDropdown();
             this.bunifuTileButton1 = new ns1.BunifuTileButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.bunifuDropdown2 = new ns1.BunifuDropdown();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,17 +76,17 @@
             this.panel1.Size = new System.Drawing.Size(234, 44);
             this.panel1.TabIndex = 4;
             // 
-            // radioButton1
+            // radioButton3
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.radioButton1.Location = new System.Drawing.Point(7, 8);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(49, 29);
-            this.radioButton1.TabIndex = 8;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "서";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.radioButton3.Location = new System.Drawing.Point(121, 8);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(106, 29);
+            this.radioButton3.TabIndex = 10;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "상관없음";
+            this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
@@ -98,17 +100,17 @@
             this.radioButton2.Text = "동";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // radioButton1
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.radioButton3.Location = new System.Drawing.Point(121, 8);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(106, 29);
-            this.radioButton3.TabIndex = 10;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "상관없음";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.radioButton1.Location = new System.Drawing.Point(7, 8);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(49, 29);
+            this.radioButton1.TabIndex = 8;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "서";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -139,8 +141,6 @@
         "06:00",
         "07:00",
         "08:00",
-        "09:00",
-        "10:00",
         "11:00",
         "12:00",
         "13:00",
@@ -149,9 +149,10 @@
             this.bunifuDropdown1.Name = "bunifuDropdown1";
             this.bunifuDropdown1.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(102)))), ((int)(((byte)(171)))));
             this.bunifuDropdown1.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(102)))), ((int)(((byte)(171)))));
-            this.bunifuDropdown1.selectedIndex = -1;
+            this.bunifuDropdown1.selectedIndex = 0;
             this.bunifuDropdown1.Size = new System.Drawing.Size(216, 32);
             this.bunifuDropdown1.TabIndex = 7;
+            this.bunifuDropdown1.onItemSelected += new System.EventHandler(this.bunifuDropdown1_onItemSelected);
             // 
             // bunifuTileButton1
             // 
@@ -169,15 +170,49 @@
             this.bunifuTileButton1.Location = new System.Drawing.Point(325, 8);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(108, 122);
+            this.bunifuTileButton1.Size = new System.Drawing.Size(108, 121);
             this.bunifuTileButton1.TabIndex = 20;
             this.bunifuTileButton1.Click += new System.EventHandler(this.bunifuTileButton1_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(3, 151);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 25);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "시간2";
+            // 
+            // bunifuDropdown2
+            // 
+            this.bunifuDropdown2.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuDropdown2.BorderRadius = 3;
+            this.bunifuDropdown2.ForeColor = System.Drawing.Color.White;
+            this.bunifuDropdown2.Items = new string[] {
+        "06:00",
+        "07:00",
+        "08:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00"};
+            this.bunifuDropdown2.Location = new System.Drawing.Point(88, 144);
+            this.bunifuDropdown2.Name = "bunifuDropdown2";
+            this.bunifuDropdown2.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(102)))), ((int)(((byte)(171)))));
+            this.bunifuDropdown2.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(102)))), ((int)(((byte)(171)))));
+            this.bunifuDropdown2.selectedIndex = 0;
+            this.bunifuDropdown2.Size = new System.Drawing.Size(216, 32);
+            this.bunifuDropdown2.TabIndex = 22;
+            this.bunifuDropdown2.onItemSelected += new System.EventHandler(this.bunifuDropdown2_onItemSelected);
             // 
             // time
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.bunifuDropdown2);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.bunifuTileButton1);
             this.Controls.Add(this.bunifuDropdown1);
             this.Controls.Add(this.label3);
@@ -186,7 +221,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bunifuDatepicker1);
             this.Name = "time";
-            this.Size = new System.Drawing.Size(448, 147);
+            this.Size = new System.Drawing.Size(448, 176);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -205,5 +240,7 @@
         public System.Windows.Forms.RadioButton radioButton2;
         public System.Windows.Forms.RadioButton radioButton1;
         public ns1.BunifuDropdown bunifuDropdown1;
+        private System.Windows.Forms.Label label4;
+        public ns1.BunifuDropdown bunifuDropdown2;
     }
 }

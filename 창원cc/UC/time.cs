@@ -17,7 +17,8 @@ namespace 창원cc.UC
         {
             InitializeComponent();
             radioButton3.Checked = true;
-            bunifuDropdown1.selectedIndex = 0;
+            //bunifuDropdown1.selectedIndex = 0;
+            //bunifuDropdown2.selectedIndex = 0;
         }
 
 
@@ -25,6 +26,20 @@ namespace 창원cc.UC
         {
             if (this.Button3_Evnet != null)
                 Button3_Evnet(sender, e);
+        }
+
+        private void bunifuDropdown1_onItemSelected(object sender, EventArgs e)
+        {
+            bunifuDropdown2.selectedIndex = bunifuDropdown1.selectedIndex;
+        }
+
+        private void bunifuDropdown2_onItemSelected(object sender, EventArgs e)
+        {
+            if (bunifuDropdown2.selectedIndex < bunifuDropdown1.selectedIndex)
+            {
+                MessageBox.Show("예비 시간은 희망 시간보다 크거나 같아야 합니다.");
+                bunifuDropdown2.selectedIndex = bunifuDropdown1.selectedIndex;
+            }
         }
     }
 }

@@ -75,6 +75,12 @@
     <Compile Include="UC\login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\progress.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\progress.Designer.cs">
+      <DependentUpon>progress.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\time.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC\login.resx">
       <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\progress.resx">
+      <DependentUpon>progress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\time.resx">
       <DependentUpon>time.cs</DependentUpon>

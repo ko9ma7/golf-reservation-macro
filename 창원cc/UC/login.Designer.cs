@@ -52,7 +52,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(115, 39);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "0403";
             // 
             // textBox3
             // 
@@ -62,7 +61,6 @@
             this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(236, 39);
             this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "8817";
             // 
             // radioButton1
             // 

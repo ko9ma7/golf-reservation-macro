@@ -240,9 +240,9 @@ namespace 창원cc
         public void GetGoogleDateTime()
         {
 
-            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 47, 30);
-
-            while (true)
+            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 09, 00, 00);
+            bool cc = true;
+            while (cc)
             {
                 //리턴 할 날짜 선언
                 DateTime dateTime = DateTime.MinValue;
@@ -286,7 +286,7 @@ namespace 창원cc
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        if (dt == dateTime)
+                        if (dt <= dateTime)
                         {
                             var element = Form1._driver.FindElement(By.XPath("//*[@id='container']/div[2]/a[2]"));
                             //element.Click();
@@ -313,7 +313,7 @@ namespace 창원cc
                 }
                 else
                 {
-                    if (dt == dateTime)
+                    if (dt <= dateTime)
                     {
                         var element = Form1._driver.FindElement(By.XPath("//*[@id='container']/div[2]/a[2]"));
                         //element.Click();
@@ -340,7 +340,13 @@ namespace 창원cc
                 }
 
                 if (c)
+                {
                     goto abc;
+                }
+                else
+                {
+                    cc = false;
+                }
             }
         }
 
@@ -358,8 +364,14 @@ namespace 창원cc
 
                     if (ee.GetAttribute("href").Contains(date))
                     {
-                        textBox2.Text += ee.Text+"\r\n";
-                        if (ee.Text.Substring(0, 2) == frm3.bunifuDropdown1.selectedValue.Split(':')[0])
+                        //textBox2.Text += ee.Text+"\r\n";
+                        if (frm3.radioButton1.Checked && ee.GetAttribute("href").Contains("'22'"))
+                            continue;
+
+                        if (frm3.radioButton2.Checked && ee.GetAttribute("href").Contains("'11'"))
+                            continue;
+
+                        if (ee.Text.Substring(0, 2) == frm3.bunifuDropdown1.selectedValue.Split(':')[0]|| ee.Text.Substring(0, 2) == frm3.bunifuDropdown2.selectedValue.Split(':')[0])
                         {
                             _driver.ExecuteScript("arguments[0].click();", ee);
 
@@ -371,11 +383,17 @@ namespace 창원cc
                                 }
                                 else
                                 {
+                                    var element2 = Form1._driver.FindElement(By.XPath("//*[@id='btnSendAuthCode']"));
+                                    //element.Click();
+                                    _driver.ExecuteScript("arguments[0].click();", element);
                                     break;
                                 }
                             }
                             catch (Exception ex)
                             {
+                                var element2 = Form1._driver.FindElement(By.XPath("//*[@id='btnSendAuthCode']"));
+                                //element.Click();
+                                _driver.ExecuteScript("arguments[0].click();", element);
                                 break;
                             }
 
@@ -395,6 +413,7 @@ namespace 창원cc
             acceptThread.Start();
 
             panel3.Visible = false;
+            panel4.Visible = true;
         }
 
 
@@ -402,8 +421,10 @@ namespace 창원cc
         private void button1_Click_1(object sender, EventArgs e)
         {
             DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 45, 55);
+            DateTime dt2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 45, 58);
 
-            textBox2.Text = dt.ToString();
+            //if (dt2 > dt)
+                //textBox2.Text = "이게더크다";
             /*
             Thread acceptThread = new Thread(() => GetGoogleDateTime());
             acceptThread.IsBackground = true;   // 부모 종료시 스레드 종료
