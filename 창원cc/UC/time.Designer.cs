@@ -40,6 +40,8 @@
             this.bunifuTileButton1 = new ns1.BunifuTileButton();
             this.label4 = new System.Windows.Forms.Label();
             this.bunifuDropdown2 = new ns1.BunifuDropdown();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,7 +147,7 @@
         "12:00",
         "13:00",
         "14:00"};
-            this.bunifuDropdown1.Location = new System.Drawing.Point(88, 97);
+            this.bunifuDropdown1.Location = new System.Drawing.Point(232, 208);
             this.bunifuDropdown1.Name = "bunifuDropdown1";
             this.bunifuDropdown1.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(102)))), ((int)(((byte)(171)))));
             this.bunifuDropdown1.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(102)))), ((int)(((byte)(171)))));
@@ -178,7 +180,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(3, 151);
+            this.label4.Location = new System.Drawing.Point(3, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 25);
             this.label4.TabIndex = 21;
@@ -197,7 +199,7 @@
         "12:00",
         "13:00",
         "14:00"};
-            this.bunifuDropdown2.Location = new System.Drawing.Point(88, 144);
+            this.bunifuDropdown2.Location = new System.Drawing.Point(232, 182);
             this.bunifuDropdown2.Name = "bunifuDropdown2";
             this.bunifuDropdown2.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(102)))), ((int)(((byte)(171)))));
             this.bunifuDropdown2.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(102)))), ((int)(((byte)(171)))));
@@ -206,11 +208,55 @@
             this.bunifuDropdown2.TabIndex = 22;
             this.bunifuDropdown2.onItemSelected += new System.EventHandler(this.bunifuDropdown2_onItemSelected);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "06:00",
+            "07:00",
+            "08:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"});
+            this.comboBox1.Location = new System.Drawing.Point(88, 109);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 23;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "06:00",
+            "07:00",
+            "08:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"});
+            this.comboBox2.Location = new System.Drawing.Point(88, 135);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 24;
+            // 
             // time
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.bunifuDropdown2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.bunifuTileButton1);
@@ -221,7 +267,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bunifuDatepicker1);
             this.Name = "time";
-            this.Size = new System.Drawing.Size(448, 176);
+            this.Size = new System.Drawing.Size(448, 177);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -242,5 +288,7 @@
         public ns1.BunifuDropdown bunifuDropdown1;
         private System.Windows.Forms.Label label4;
         public ns1.BunifuDropdown bunifuDropdown2;
+        public System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.ComboBox comboBox2;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,8 +34,9 @@ namespace 창원cc
 
         public Form1()
         {
-            InitializeComponent();
 
+            InitializeComponent();
+            frm3.bunifuDatepicker1.Value= DateTime.Now;
             this.Load += Load_Form;
 
             frm.Button1_Evnet += Button1_Click_Event;
@@ -60,7 +62,7 @@ namespace 창원cc
         public void Button1_Click_Event(object sender, EventArgs e)
         {
 
-            Form1._driver = new ChromeDriver(@"C:\chrom", Form1._options);
+            Form1._driver = new ChromeDriver(Form1._options);
             Form1._driver.Navigate().GoToUrl("https://changwoncountryclub.co.kr/Member/Login.aspx");
             Form1._driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             //Thread.Sleep(1500);
@@ -371,7 +373,7 @@ namespace 창원cc
                         if (frm3.radioButton2.Checked && ee.GetAttribute("href").Contains("'11'"))
                             continue;
 
-                        if (ee.Text.Substring(0, 2) == frm3.bunifuDropdown1.selectedValue.Split(':')[0]|| ee.Text.Substring(0, 2) == frm3.bunifuDropdown2.selectedValue.Split(':')[0])
+                        if (Convert.ToInt32(ee.Text.Substring(0, 2)) >= Convert.ToInt32(frm3.comboBox1.SelectedItem.ToString().Split(':')[0])&& Convert.ToInt32(ee.Text.Substring(0, 2)) <= Convert.ToInt32(frm3.comboBox2.SelectedItem.ToString().Split(':')[0]))
                         {
                             _driver.ExecuteScript("arguments[0].click();", ee);
 
@@ -383,17 +385,35 @@ namespace 창원cc
                                 }
                                 else
                                 {
+                                    Thread.Sleep(500);
                                     var element2 = Form1._driver.FindElement(By.XPath("//*[@id='btnSendAuthCode']"));
                                     //element.Click();
-                                    _driver.ExecuteScript("arguments[0].click();", element);
+                                    //Actions actionProvider = new Actions(_driver); 
+                                    //actionProvider.MoveToElement(element2).Click().Perform();
+
+                                    Thread.Sleep(500);
+                                    if (Form1._driver.SwitchTo().Alert().ToString() == "OpenQA.Selenium.Remote.RemoteAlert")
+                                    {
+                                        _driver.SwitchTo().Alert().Accept();
+                                    }
+
                                     break;
                                 }
                             }
                             catch (Exception ex)
                             {
+                                Thread.Sleep(500);
                                 var element2 = Form1._driver.FindElement(By.XPath("//*[@id='btnSendAuthCode']"));
                                 //element.Click();
-                                _driver.ExecuteScript("arguments[0].click();", element);
+                                //Actions actionProvider = new Actions(_driver);
+                                //actionProvider.MoveToElement(element2).Click().Perform();
+
+                                Thread.Sleep(500);
+                                if (Form1._driver.SwitchTo().Alert().ToString() == "OpenQA.Selenium.Remote.RemoteAlert")
+                                {
+                                    _driver.SwitchTo().Alert().Accept();
+                                }
+
                                 break;
                             }
 
@@ -420,11 +440,9 @@ namespace 창원cc
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 45, 55);
-            DateTime dt2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 45, 58);
-
+            textBox2.Text = frm3.comboBox1.SelectedItem.ToString();
             //if (dt2 > dt)
-                //textBox2.Text = "이게더크다";
+            //textBox2.Text = "이게더크다";
             /*
             Thread acceptThread = new Thread(() => GetGoogleDateTime());
             acceptThread.IsBackground = true;   // 부모 종료시 스레드 종료
@@ -462,6 +480,11 @@ namespace 창원cc
             catch (Exception)
             {
             }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }

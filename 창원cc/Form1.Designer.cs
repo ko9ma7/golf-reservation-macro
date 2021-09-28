@@ -111,7 +111,7 @@
             // progress1
             // 
             this.progress1.BackColor = System.Drawing.Color.White;
-            this.progress1.Location = new System.Drawing.Point(0, 2);
+            this.progress1.Location = new System.Drawing.Point(-1, 1);
             this.progress1.Name = "progress1";
             this.progress1.Size = new System.Drawing.Size(448, 176);
             this.progress1.TabIndex = 0;
@@ -122,7 +122,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(443, 210);
+            this.ClientSize = new System.Drawing.Size(476, 205);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.textBox2);
@@ -131,9 +131,11 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "창원cc 예약 ";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

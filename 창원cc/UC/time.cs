@@ -19,6 +19,8 @@ namespace 창원cc.UC
             radioButton3.Checked = true;
             //bunifuDropdown1.selectedIndex = 0;
             //bunifuDropdown2.selectedIndex = 0;
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
         }
 
 
