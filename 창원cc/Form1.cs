@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -247,125 +248,80 @@ namespace 창원cc
             while (cc)
             {
                 //리턴 할 날짜 선언
-                DateTime dateTime = DateTime.MinValue;
+                DateTime dateTime = DateTime.Now;
 
-                
-                try
+                Debug.WriteLine("돌아가는중");
+                if (dt <= dateTime)
                 {
-                    //WebRequest 객체로 구글사이트 접속 해당 날짜와 시간을 로컬 형태의 포맷으로 리턴 일자에 담는다.
+                    var element = Form1._driver.FindElement(By.XPath("//*[@id='container']/div[2]/a[2]"));
+                    //element.Click();
+                    _driver.ExecuteScript("arguments[0].click();", element);
 
-                    using (var response = WebRequest.Create("https://changwoncountryclub.co.kr/main/Default.aspx").GetResponse())
-
-                        dateTime = DateTime.ParseExact(response.Headers["date"],
-
-                            "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
-
-                            CultureInfo.InvariantCulture.DateTimeFormat,
-
-                            DateTimeStyles.AssumeUniversal);
-                }
-                catch (Exception)
-                {
-                    //오류 발생시 로컬 날짜그대로 리턴
-                    dateTime = DateTime.Now;
-                }
-
-                if (InvokeRequired)
-                {
-                    this.Invoke(new MethodInvoker(delegate ()
+                    try
                     {
-                        textBox1.Text = dateTime.ToString();
-                    }));
-                }
-                else
-                {
-                    textBox1.Text = dateTime.ToString();
-                }
-
-                abc:
-                bool c = false;
-                if (InvokeRequired)
-                {
-                    this.Invoke(new MethodInvoker(delegate ()
-                    {
-                        if (dt <= dateTime)
+                        //if (Form1._driver.SwitchTo().Alert().ToString() == "OpenQA.Selenium.Remote.RemoteAlert")
+                        if(_driver.Url != "https://changwoncountryclub.co.kr/Reservation/Reservation.aspx")
                         {
-                            var element = Form1._driver.FindElement(By.XPath("//*[@id='container']/div[2]/a[2]"));
-                            //element.Click();
-                            _driver.ExecuteScript("arguments[0].click();", element);
-
-                            try
-                            {
-                                if (Form1._driver.SwitchTo().Alert().ToString() == "OpenQA.Selenium.Remote.RemoteAlert")
-                                {
-                                    _driver.SwitchTo().Alert().Accept();
-                                    c = true;
-                                }
-                                else
-                                {
-                                    Time_Click();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Time_Click();
-                            }
+                            _driver.SwitchTo().Alert().Accept();
                         }
-                    }));
-                }
-                else
-                {
-                    if (dt <= dateTime)
-                    {
-                        var element = Form1._driver.FindElement(By.XPath("//*[@id='container']/div[2]/a[2]"));
-                        //element.Click();
-                        _driver.ExecuteScript("arguments[0].click();", element);
-
-                        try
+                        else
                         {
-                            if (Form1._driver.SwitchTo().Alert().ToString() == "OpenQA.Selenium.Remote.RemoteAlert")
-                            {
-                                _driver.SwitchTo().Alert().Accept();
-                                c = true;
-                            }
-                            else
-                            {
-                                Time_Click();
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Time_Click();
+                            cc = false;
+                            Thread acceptThread = new Thread(() => Time_Click());
+                            acceptThread.IsBackground = true;   // 부모 종료시 스레드 종료
+                            acceptThread.Start();
+                           
+                            return;
                         }
                     }
-                        
-                }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine("시간 에러");
+                        cc = false;
+                        Thread acceptThread = new Thread(() => Time_Click());
+                        acceptThread.IsBackground = true;   // 부모 종료시 스레드 종료
+                        acceptThread.Start();
 
-                if (c)
-                {
-                    goto abc;
+                        return;
+                    }
+
                 }
-                else
-                {
-                    cc = false;
-                }
+                Thread.Sleep(100);
             }
+
         }
 
         public void Time_Click()
         {
+            Debug.WriteLine("예약실행");
             string date = frm3.bunifuDatepicker1.Value.ToString("yyyyMMdd");
             //Thread.Sleep(100);
+            Debug.WriteLine(date);
             try
             {
                 var element = Form1._driver.FindElements(By.XPath("//*[@id='container']/table/tbody/tr/td/a"));
                 //var element = Form1._driver.FindElements(By.XPath(".//*[@id='container']/table/tbody/tr/td"));
+                int bx1=0, bx2=0;
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate ()
+                    {
+                        bx1=Convert.ToInt32(frm3.comboBox1.SelectedItem.ToString().Split(':')[0]);
+                        bx2 = Convert.ToInt32(frm3.comboBox2.SelectedItem.ToString().Split(':')[0]);
+                    }));
+                }
+                else
+                {
+                    bx1 = Convert.ToInt32(frm3.comboBox1.SelectedItem.ToString().Split(':')[0]);
+                    bx2 = Convert.ToInt32(frm3.comboBox2.SelectedItem.ToString().Split(':')[0]);
+                }
 
                 foreach (IWebElement ee in element)
                 {
 
                     if (ee.GetAttribute("href").Contains(date))
                     {
+                        Debug.WriteLine(ee.Text);
                         //textBox2.Text += ee.Text+"\r\n";
                         if (frm3.radioButton1.Checked && ee.GetAttribute("href").Contains("'22'"))
                             continue;
@@ -373,7 +329,7 @@ namespace 창원cc
                         if (frm3.radioButton2.Checked && ee.GetAttribute("href").Contains("'11'"))
                             continue;
 
-                        if (Convert.ToInt32(ee.Text.Substring(0, 2)) >= Convert.ToInt32(frm3.comboBox1.SelectedItem.ToString().Split(':')[0])&& Convert.ToInt32(ee.Text.Substring(0, 2)) <= Convert.ToInt32(frm3.comboBox2.SelectedItem.ToString().Split(':')[0]))
+                        if (Convert.ToInt32(ee.Text.Substring(0, 2)) >= bx1 && Convert.ToInt32(ee.Text.Substring(0, 2)) <= bx2)
                         {
                             _driver.ExecuteScript("arguments[0].click();", ee);
 
@@ -421,8 +377,9 @@ namespace 창원cc
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Debug.WriteLine(ex);
             }
         }
 
